@@ -12,7 +12,10 @@ const routes: Routes = [
     path: "logout",
     component: CerrarSesionComponent,
   }
-
+  ,{
+    path: '',
+    redirectTo: 'login'
+  }
 ];
 
 @NgModule({

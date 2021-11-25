@@ -17,6 +17,11 @@ const routes: Routes = [
     path: "get",
     component: GetComponent,
   }
+  ,{
+    path: '',
+    redirectTo: 'get'
+  }
+
 ];
 
 @NgModule({

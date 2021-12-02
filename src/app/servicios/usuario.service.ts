@@ -35,7 +35,7 @@ store(usuario: UsuarioModelo): Observable<UsuarioModelo> {
   }
 
   update(usuario: UsuarioModelo): Observable<UsuarioModelo> {
-    return this.http.put<UsuarioModelo>(`${this.url}/usuarios/${usuario.id}`, {
+    return this.http.patch<UsuarioModelo>(`${this.url}/usuarios/${usuario.id}`, {
       nombre: usuario.nombre,
       apellidos: usuario.apellidos,
       telefono: usuario.telefono,

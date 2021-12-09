@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RutaModelo } from 'src/app/modelos/ruta.model';
 import { ServicioModelo } from 'src/app/modelos/servicio.model';
+import { RutasService } from 'src/app/servicios/rutas.service';
 import { ServiciosService } from 'src/app/servicios/servicios.service';
 import Swal from 'sweetalert2';
 
@@ -12,9 +14,11 @@ import Swal from 'sweetalert2';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,
+  constructor(private rutasService: RutasService, private fb: FormBuilder,
     private servicioService: ServiciosService,
     private router: Router) { }
+
+    listadoRutas: RutaModelo[] = []
 
     fgValidacion = this.fb.group({
       fecha: ['', [Validators.required]],
@@ -28,11 +32,19 @@ export class CreateComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.getAllRutas()
+  }
+  getAllRutas(){
+    this.rutasService.getAll().subscribe((data: RutaModelo[]) => {
+      this.listadoRutas = data
+      console.log(data)
+    })
   }
 
   store(){
     let servicio = new ServicioModelo;
-    //servicio.fecha = new Date(this.fgValidacion.controls["fecha"].value).toISOString()
+    
+    servicio.fecha = new Date(this.fgValidacion.controls["fecha"].value).toISOString()
     servicio.hora_inicio = this.fgValidacion.controls["hora_inicio"].value;
     servicio.hora_fin = this.fgValidacion.controls["hora_fin"].value;
     servicio.placa = this.fgValidacion.controls["placa"].value;
@@ -42,7 +54,7 @@ export class CreateComponent implements OnInit {
  
     this.servicioService.store(servicio).subscribe((data: ServicioModelo)=> {
       Swal.fire('Creado correctamente!', '', 'success')
-      this.router.navigate(['/estaciones/get']);
+      this.router.navigate(['/servicios/get']);
     },
     (error: any) => {
       console.log(error)

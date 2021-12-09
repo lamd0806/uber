@@ -13,7 +13,7 @@ export class RutasService {
     this.token = this.seguridadService.getToken();
   }
 
-  url = "http://localhost:3000"
+  url = "https://apiloopbackgrupo25equipo9and.herokuapp.com"
   token: string = ''
 
   store(rutas: RutaModelo): Observable<RutaModelo> {

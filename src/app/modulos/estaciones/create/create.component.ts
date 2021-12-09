@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
     private router: Router) { }
 
     fgValidacion = this.fb.group({
-      fecha: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
       coordenada_x: ['', [Validators.required]],
       coordenada_y: ['', [Validators.required]],

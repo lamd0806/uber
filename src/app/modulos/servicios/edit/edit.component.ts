@@ -53,7 +53,7 @@ export class EditComponent implements OnInit {
   edit(){
     let servicio = new ServicioModelo();
     servicio.id = this.fgValidacion.controls["id"].value;
-    //servicio.fecha = new Date(this.fgValidacion.controls["fecha"].value).toISOString()
+    servicio.fecha = new Date(this.fgValidacion.controls["fecha"].value).toISOString()
     servicio.hora_inicio = this.fgValidacion.controls["hora_inicio"].value;
     servicio.hora_fin = this.fgValidacion.controls["hora_fin"].value;
     servicio.placa = this.fgValidacion.controls["placa"].value;

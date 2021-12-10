@@ -63,7 +63,7 @@ export class EditComponent implements OnInit {
  
     this.serviciosService.update(servicio).subscribe((data: ServicioModelo) => {
       Swal.fire('Editado Correctamente!', '', 'success')
-      this.router.navigate(['/estaciones/get']);
+      this.router.navigate(['/servicios/get']);
     },
     (error: any) => {
       console.log(error)
